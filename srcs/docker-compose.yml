@@ -1,0 +1,8 @@
+
+version: '2.38'
+
+services:
+
+  service_name: nginx
+  port : "443:443"
+  volumes:
