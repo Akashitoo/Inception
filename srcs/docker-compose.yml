@@ -1,8 +1,18 @@
 
-version: '2.38'
+version: '3.8'
 
 services:
 
-  service_name: nginx
-  port : "443:443"
-  volumes:
+  nginx:
+    build:
+      context: ./nginx
+    ports :
+      - "443:443"
+  
+  mariadb:
+    build:
+      context: ./mariadb
+    volumes:
+      - /home/abalasub/data:/var/lib/mysql
+volumes:
+      mariadb_data: 
