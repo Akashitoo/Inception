@@ -5,11 +5,23 @@ services:
       context: ./nginx
     ports :
       - "443:443"
-  
+    depends_on:
+      - wordpress
+  wordpress:
+    build:
+      context: ./wordpress
+    ports:
+      - "9000:9000"
+    volumes:
+      - /home/abalasub/data/wordpress:/var/www/html
+    depends_on:
+      - mariadb
   mariadb:
     build:
       context: ./mariadb
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
     volumes:
-      - /home/abalasub/data:/var/lib/mysql
-volumes:
-      mariadb_data: 
+      - /home/abalasub/data/mysql:/var/lib/mysql
