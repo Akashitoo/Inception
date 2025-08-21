@@ -12,7 +12,11 @@ RUN apk add --no-cache \
 
 WORKDIR /var/www/html
 
-RUN wget https://fr.wordpress.org/latest-fr_FR.zip
+RUN wget https://fr.wordpress.org/latest-fr_FR.zip && \
+	 unzip latest-fr_FR.zip && \
+	 mv wordpress/* . && \
+	 rm -rf wordpress latest-fr_FR.zip
 
 EXPOSE 9000
 
+CMD [ "php-fpm81", "-F"]
