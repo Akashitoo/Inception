@@ -8,7 +8,9 @@ RUN apk add --no-cache \
 	php81-curl \
 	php81-xml \
 	wget \
-	unzip \
+	unzip
+
+WORKDIR /var/www/html
 
 RUN wget https://fr.wordpress.org/latest-fr_FR.zip
 
