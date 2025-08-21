@@ -7,6 +7,10 @@ RUN apk add --no-cache \
 	php81-json \
 	php81-curl \
 	php81-xml \
-	wget
+	wget \
+	unzip \
+
+RUN wget https://fr.wordpress.org/latest-fr_FR.zip
 
 EXPOSE 9000
+
