@@ -5,8 +5,12 @@ services:
       context: ./nginx
     ports :
       - "443:443"
+    volumes:
+      - /home/abalasub/data/wordpress:/var/www/html
     depends_on:
       - wordpress
+    networks:
+      - inception_network
   wordpress:
     build:
       context: ./wordpress
@@ -16,6 +20,8 @@ services:
       - /home/abalasub/data/wordpress:/var/www/html
     depends_on:
       - mariadb
+    networks:
+      - inception_network
   mariadb:
     build:
       context: ./mariadb
@@ -25,3 +31,8 @@ services:
       - .env
     volumes:
       - /home/abalasub/data/mysql:/var/lib/mysql
+    networks:
+      - inception_network
+
+networks:
+  inception_network:

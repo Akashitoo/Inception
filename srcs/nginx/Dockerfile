@@ -1,4 +1,4 @@
-FROM alpine:3.22
+FROM alpine:3.21.4
 EXPOSE 443
 RUN apk add --no-cache nginx
 COPY selfsigned.crt /etc/nginx/ssl/selfsigned.crt
