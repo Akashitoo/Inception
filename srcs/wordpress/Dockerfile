@@ -21,7 +21,7 @@ RUN wget https://fr.wordpress.org/latest-fr_FR.zip && \
 	 mv wordpress/* . && \
 	 rm -rf wordpress latest-fr_FR.zip
 
-	 COPY www.conf /etc/php81/php-fpm.d/www.conf
+	 COPY www.conf /etc/php83/php-fpm.d/www.conf
 
 EXPOSE 9000
 

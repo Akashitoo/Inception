@@ -6,7 +6,7 @@ services:
     ports :
       - "443:443"
     volumes:
-      - /home/abalasub/data/wordpress:/var/www/html
+      - wordpress:/var/www/html
     depends_on:
       - wordpress
     networks:
@@ -17,7 +17,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - /home/abalasub/data/wordpress:/var/www/html
+      - wordpress:/var/www/html
     depends_on:
       - mariadb
     networks:
@@ -30,9 +30,14 @@ services:
     env_file:
       - .env
     volumes:
-      - /home/abalasub/data/mysql:/var/lib/mysql
+      - mariadb:/var/lib/mysql
     networks:
       - inception_network
 
+volumes:
+  wordpress:
+    driver: local
+  mariadb:
+    driver: local
 networks:
   inception_network:

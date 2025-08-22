@@ -1,10 +1,12 @@
 #!/bin/sh
 
+chown -R mysql:mysql /var/lib/mysql
+
 if [ ! -d "/var/lib/mysql/mysql" ];then
 
-	mariadb-install-db --datadir=/var/lib/mysql
+	su-exec mysql mariadb-install-db --datadir=/var/lib/mysql
 
-	mariadbd --datadir=/var/lib/mysql &
+	su-exec mysql mariadbd --datadir=/var/lib/mysql &
 	MYSQL_PID=$!
 
 	until mysqladmin ping -h localhost --silent; do
@@ -19,4 +21,4 @@ if [ ! -d "/var/lib/mysql/mysql" ];then
 	wait $MYSQL_PID
 fi
 
-exec "$@"
+exec su-exec mysql "$@"
