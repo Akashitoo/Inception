@@ -11,6 +11,7 @@ RUN apk add --no-cache \
 	php83-json \
 	php83-curl \
 	php83-xml \
+	php83-phar \
 	wget \
 	curl \
 	unzip
@@ -26,13 +27,13 @@ RUN wget https://fr.wordpress.org/latest-fr_FR.zip && \
 	 mv wordpress/* . && \
 	 rm -rf wordpress latest-fr_FR.zip
 
-RUN chown -R 755 /var/www/html
+RUN chmod -R 755 /var/www/html
 
-COPY setup-wp-config.sh /setup-wp-config.sh
-RUN chmod +x /setup-wp-config.sh
+COPY start.sh /var/www/html/start.sh
+RUN chmod +x /var/www/html/start.sh
 COPY www.conf /etc/php83/php-fpm.d/www.conf
 
 EXPOSE 9000
 
-ENTRYPOINT [ "/setup-wp-config.sh" ]
+ENTRYPOINT [ "/var/www/html/start.sh" ]
 CMD [ "php-fpm83", "-F"]
