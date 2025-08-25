@@ -21,7 +21,8 @@ services:
     volumes:
       - wordpress:/var/www/html
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
     networks:
       - inception_network
   mariadb:
@@ -35,6 +36,11 @@ services:
       - mariadb:/var/lib/mysql
     networks:
       - inception_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
 volumes:
   wordpress:

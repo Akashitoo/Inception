@@ -27,13 +27,15 @@ RUN wget https://fr.wordpress.org/latest-fr_FR.zip && \
 	 mv wordpress/* . && \
 	 rm -rf wordpress latest-fr_FR.zip
 
-RUN chmod -R 755 /var/www/html
+COPY start.sh /var/www/html/start.sh
 
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+RUN chmod +x /var/www/html/start.sh
+
 COPY www.conf /etc/php83/php-fpm.d/www.conf
 
 EXPOSE 9000
 
-ENTRYPOINT [ "/start.sh" ]
+
+ENTRYPOINT [ "/var/www/html/start.sh" ]
+
 CMD [ "php-fpm83", "-F"]
