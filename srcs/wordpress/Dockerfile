@@ -14,7 +14,7 @@ RUN apk add --no-cache \
 	php83-phar \
 	wget \
 	curl \
-	unzip
+	unzip 
 
 WORKDIR /var/www/html
 
@@ -29,11 +29,11 @@ RUN wget https://fr.wordpress.org/latest-fr_FR.zip && \
 
 RUN chmod -R 755 /var/www/html
 
-COPY start.sh /var/www/html/start.sh
-RUN chmod +x /var/www/html/start.sh
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 COPY www.conf /etc/php83/php-fpm.d/www.conf
 
 EXPOSE 9000
 
-ENTRYPOINT [ "/var/www/html/start.sh" ]
+ENTRYPOINT [ "/start.sh" ]
 CMD [ "php-fpm83", "-F"]
