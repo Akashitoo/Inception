@@ -12,6 +12,9 @@ RUN apk add --no-cache \
 	php83-curl \
 	php83-xml \
 	php83-phar \
+	php83-mbstring \
+	mariadb-client \
+	php83-zip \
 	wget \
 	curl \
 	unzip 
