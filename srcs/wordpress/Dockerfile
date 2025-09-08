@@ -38,7 +38,6 @@ COPY www.conf /etc/php83/php-fpm.d/www.conf
 
 EXPOSE 9000
 
-
 ENTRYPOINT [ "/var/www/html/start.sh" ]
 
 CMD [ "php-fpm83", "-F"]

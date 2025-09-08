@@ -3,6 +3,7 @@ services:
   nginx:
     build:
       context: ./nginx
+    image: nginx
     ports :
       - "443:443"
     volumes:
@@ -14,8 +15,9 @@ services:
   wordpress:
     build:
       context: ./wordpress
-    ports:
-      - "9000:9000"
+    image: wordpress
+    expose:
+      - "9000"
     env_file:
       - .env
     volumes:
@@ -28,8 +30,9 @@ services:
   mariadb:
     build:
       context: ./mariadb
-    ports:
-      - "3306:3306"
+    image: mariadb
+    expose:
+      - "3306"
     env_file:
       - .env
     volumes:
