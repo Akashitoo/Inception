@@ -48,7 +48,15 @@ services:
 volumes:
   wordpress:
     driver: local
+    driver_opts:
+      type: none
+      device: /home/abalasub/data/wordpress
+      o: bind
   mariadb:
     driver: local
+    driver_opts:
+      type: none
+      device: /home/abalasub/data/mariadb
+      o: bind
 networks:
   inception_network:
